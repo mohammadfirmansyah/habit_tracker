@@ -1,6 +1,6 @@
 # Habit Tracker User Stories
 
-## Exercise 2: Login/Registration Page
+## Login/Registration Page
 
 ### User Story 1: Account Registration
 **Title:**
@@ -64,7 +64,7 @@ _As a user, I want to receive a message if I enter the wrong username or passwor
 
 ---
 
-## Exercise 3: Homepage
+## Homepage
 
 ### User Story 4: View Welcome Message
 **Title:**
@@ -127,7 +127,7 @@ _As a user, I want to see a section for completed habits on the homepage, so tha
 
 ---
 
-## Exercise 4: Menu
+## Menu
 
 ### User Story 7: Access Menu Options
 **Title:**
@@ -211,7 +211,7 @@ _As a user, I want to sign out of my account using an option in the menu, so tha
 
 ---
 
-## Exercise 5: Profile Page
+## Profile Page
 
 ### User Story 11: View Personal Information
 **Title:**
@@ -296,7 +296,7 @@ _As a user, I want my updated name to be displayed in the app's header after I c
 
 ---
 
-## Exercise 6: Habits Page
+## Habits Page
 
 ### User Story 15: Add a New Habit
 **Title:**
@@ -361,7 +361,7 @@ _As a user, I want to assign a specific color to each habit to make it personal 
 
 ---
 
-## Exercise 7: Reports Page
+## Reports Page
 
 ### User Story 18: View Weekly Reports
 **Title:**
@@ -426,7 +426,7 @@ _As a user, I want to see both completed and incomplete habits in my report so t
 
 ---
 
-## Exercise 8: Notifications Page
+## Notifications Page
 
 ### User Story 21: Enable/Disable Notifications
 **Title:**
