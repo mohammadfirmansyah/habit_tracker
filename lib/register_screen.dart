@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import 'habit_tracker_screen.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -26,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     'Sleep 8 Hours',
     'Eat Healthy',
     'Journal',
-    'Walk 10,000 Steps'
+    'Walk 10,000 Steps',
   ];
 
   @override
@@ -47,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'Japan',
       'China',
       'Brazil',
-      'South Africa'
+      'South Africa',
     ];
 
     setState(() {
@@ -57,9 +59,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
+  void _showToast(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   void _register() async {
-    // dummy for now
-    print("registration logic here");
+    final name = _nameController.text;
+    final username = _usernameController.text;
+
+    if (username.isEmpty || name.isEmpty) {
+      _showToast('Please fill in all fields');
+      return;
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HabitTrackerScreen(username: username),
+      ),
+    );
   }
 
   @override
@@ -95,18 +120,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         child: Center(
           child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 8.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildInputField(_nameController, 'Name', Icons.person),
                 const SizedBox(height: 10),
                 _buildInputField(
-                    _usernameController, 'Username', Icons.alternate_email),
+                  _usernameController,
+                  'Username',
+                  Icons.alternate_email,
+                ),
                 const SizedBox(height: 10),
-                Text('Age: ${_age.round()}',
-                    style: const TextStyle(color: Colors.white, fontSize: 18)),
+                Text(
+                  'Age: ${_age.round()}',
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                ),
                 Slider(
                   value: _age,
                   min: 21,
@@ -123,8 +155,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 10),
                 _buildCountryDropdown(),
                 const SizedBox(height: 10),
-                const Text('Select Your Habits',
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                const Text(
+                  'Select Your Habits',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -134,10 +168,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onTap: () => null,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
                         decoration: BoxDecoration(
-                          color:
-                              isSelected ? Colors.blue.shade600 : Colors.white,
+                          color: isSelected
+                              ? Colors.blue.shade600
+                              : Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.blue.shade700),
                         ),
@@ -163,7 +200,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 80, vertical: 15),
+                        horizontal: 80,
+                        vertical: 15,
+                      ),
                     ),
                     child: const Text(
                       'Register',
@@ -184,7 +223,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _buildInputField(
-      TextEditingController controller, String hint, IconData icon) {
+    TextEditingController controller,
+    String hint,
+    IconData icon,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -196,8 +238,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           prefixIcon: Icon(icon, color: Colors.blue.shade700),
           hintText: hint,
           border: InputBorder.none,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
         ),
       ),
     );
@@ -216,10 +260,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         isExpanded: true,
         underline: const SizedBox(),
         items: _countries.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
+          return DropdownMenuItem<String>(value: value, child: Text(value));
         }).toList(),
         onChanged: (newValue) {
           setState(() {
